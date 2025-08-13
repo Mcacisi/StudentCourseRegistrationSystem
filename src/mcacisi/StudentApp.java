@@ -178,9 +178,30 @@ public class StudentApp extends javax.swing.JFrame {
         int yearOfStudy;
 
         studNo = txtStudentNo.getText();
+                if(studNo.isEmpty()){
+                    JOptionPane.showMessageDialog(this, "Please enter student number", "Missing Data input", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                
         lastname = txtLastname.getText();
+                if(lastname.isEmpty()){
+                   JOptionPane.showMessageDialog(this, "Please enter your lastname", "Missing Data input", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                
         initials = txtInitials.getText();
+                if(initials.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Please enter your Initials", "Missing Data input", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                
         course = (String) cmbCourse.getSelectedItem();
+                if(cmbCourse.getSelectedIndex()==0){
+                    JOptionPane.showMessageDialog(this, "Please select the appropriate course", "Course selection", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                 
+                
         yearOfStudy =  Integer.parseInt((String)cmbYearOfStudy.getSelectedItem());
 
         
