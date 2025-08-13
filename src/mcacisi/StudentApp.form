@@ -4,6 +4,9 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Student  Course Registration System"/>
+    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+      <Font name="SansSerif" size="12" style="1"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -28,30 +31,28 @@
               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtLastname" min="-2" pref="289" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="cmbYearOfStudy" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtInitials" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cmbCourse" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="301" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="cmbCourse" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtLastname" alignment="0" pref="289" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -77,7 +78,7 @@
                               <Component id="btnExit" min="-2" pref="90" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="60" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="32" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -118,7 +119,7 @@
                   <Component id="btnViewAll" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnClear" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="58" max="32767" attributes="0"/>
+              <EmptySpace pref="38" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -126,47 +127,74 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Student Number :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Lastname :"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Initials :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value=" Course :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Year Of Study :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btnRegister">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Register"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btnViewAll">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="View All"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btnClear">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Clear Fields"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btnExit">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Exit"/>
       </Properties>
     </Component>
@@ -179,11 +207,26 @@
     <Component class="javax.swing.JComboBox" name="cmbCourse">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="19">
+            <StringItem index="0" value="                          -- SELECT COURSE --"/>
+            <StringItem index="1" value="ACCOUNTING"/>
+            <StringItem index="2" value="AGRICULTURAL MANAGEMENT"/>
+            <StringItem index="3" value="ANALYTICAL CHEMISTRY"/>
+            <StringItem index="4" value="FASHION"/>
+            <StringItem index="5" value="HUMAN RESOURCE MANAGEMENT"/>
+            <StringItem index="6" value="INFORMATION OF TECHNOLOGY"/>
+            <StringItem index="7" value="CHEMICAL ENGINEERING"/>
+            <StringItem index="8" value="CIVIL ENGINEERING "/>
+            <StringItem index="9" value="ELECTRONIC ENGINEERING"/>
+            <StringItem index="10" value="MECHANICAL ENGINEERING"/>
+            <StringItem index="11" value="INDUSTRIAL ENGINEERING"/>
+            <StringItem index="12" value="POWER ENGINEERING"/>
+            <StringItem index="13" value="MARKETING"/>
+            <StringItem index="14" value="LABOUR LAW"/>
+            <StringItem index="15" value="POLICING"/>
+            <StringItem index="16" value="SAFETY MANAGEMENT"/>
+            <StringItem index="17" value="TEACHING (SENIOR PHASE &amp; FET)"/>
+            <StringItem index="18" value="TOURISM"/>
           </StringArray>
         </Property>
       </Properties>
@@ -194,11 +237,12 @@
     <Component class="javax.swing.JComboBox" name="cmbYearOfStudy">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="5">
+            <StringItem index="0" value="1"/>
+            <StringItem index="1" value="2"/>
+            <StringItem index="2" value="3"/>
+            <StringItem index="3" value="4"/>
+            <StringItem index="4" value="5"/>
           </StringArray>
         </Property>
       </Properties>
