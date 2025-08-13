@@ -4,11 +4,17 @@
  */
 package mcacisi;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
+ * Use the Arraylist to store student objects for temp, then save them on a file
  *
  * @author Mcacisi Sithole
  */
 public class StudentApp extends javax.swing.JFrame {
+
+    private ArrayList<Student> arrStud = new ArrayList<>();
 
     /**
      * Creates new form StudentApp
@@ -63,12 +69,22 @@ public class StudentApp extends javax.swing.JFrame {
 
         btnRegister.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
 
         btnViewAll.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewAll.setText("View All");
 
         btnClear.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnClear.setText("Clear Fields");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         btnExit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnExit.setText("Exit");
@@ -156,6 +172,39 @@ public class StudentApp extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        String studNo, lastname, initials, course;
+        int yearOfStudy;
+
+        studNo = txtStudentNo.getText();
+        lastname = txtLastname.getText();
+        initials = txtInitials.getText();
+        course = (String) cmbCourse.getSelectedItem();
+        yearOfStudy =  Integer.parseInt((String)cmbYearOfStudy.getSelectedItem());
+
+        
+        for (Student ms : arrStud) {
+            if (ms.getStudentNo().equals(studNo)) {
+                JOptionPane.showMessageDialog(this, "Student Number already exists", "Duplicate students", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
+        
+        Student myStud = new Student(studNo, lastname, initials, course, yearOfStudy);
+        arrStud.add(myStud);
+        JOptionPane.showMessageDialog(this, "Student successfully", "", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+    
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        txtStudentNo.setText("");
+        txtLastname.setText("");
+        txtInitials.setText("");
+        cmbCourse.setSelectedIndex(0);
+        cmbYearOfStudy.setSelectedIndex(0);
+        
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments
