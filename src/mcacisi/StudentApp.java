@@ -109,6 +109,11 @@ public class StudentApp extends javax.swing.JFrame {
 
         btnSearch.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnUpdate.setText("Update");
@@ -211,19 +216,19 @@ public class StudentApp extends javax.swing.JFrame {
         String studNo, lastname, initials, course;
         int yearOfStudy;
 
-        studNo = txtStudentNo.getText();
+        studNo = txtStudentNo.getText().trim();
                 if(studNo.isEmpty()){
                     JOptionPane.showMessageDialog(this, "Please enter student number", "Missing Data input", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 
-        lastname = txtLastname.getText();
+        lastname = txtLastname.getText().toUpperCase().trim();
                 if(lastname.isEmpty()){
                    JOptionPane.showMessageDialog(this, "Please enter your lastname", "Missing Data input", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 
-        initials = txtInitials.getText();
+        initials = txtInitials.getText().toUpperCase().trim();
                 if(initials.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Please enter your Initials", "Missing Data input", JOptionPane.WARNING_MESSAGE);
                     return;
@@ -278,6 +283,22 @@ public class StudentApp extends javax.swing.JFrame {
         
         lblDisplay.setText(my.toString());
     }//GEN-LAST:event_btnViewAllActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        
+        String searchStud = txtStudentNo.getText().trim();
+        
+        for(Student s: arrStud){
+            if(s.getStudentNo().equalsIgnoreCase(searchStud)){
+               JOptionPane.showMessageDialog(this, "Student found in system", searchStud, JOptionPane.INFORMATION_MESSAGE);
+            } else{
+               JOptionPane.showMessageDialog(this, "Student does not exist", searchStud, JOptionPane.INFORMATION_MESSAGE);
+               return;
+            }
+        }
+        
+        
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments

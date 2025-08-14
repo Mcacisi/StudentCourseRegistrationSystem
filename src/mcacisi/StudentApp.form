@@ -294,6 +294,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btnUpdate">
       <Properties>
