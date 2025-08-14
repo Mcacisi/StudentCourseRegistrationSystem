@@ -82,6 +82,11 @@ public class StudentApp extends javax.swing.JFrame {
 
         btnViewAll.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnViewAll.setText("View All");
+        btnViewAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewAllActionPerformed(evt);
+            }
+        });
 
         btnClear.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnClear.setText("Clear Fields");
@@ -244,6 +249,7 @@ public class StudentApp extends javax.swing.JFrame {
         Student myStud = new Student(studNo, lastname, initials, course, yearOfStudy);
         arrStud.add(myStud);
         JOptionPane.showMessageDialog(this, "Student successfully", "", JOptionPane.INFORMATION_MESSAGE);
+        
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     
@@ -255,6 +261,23 @@ public class StudentApp extends javax.swing.JFrame {
         cmbYearOfStudy.setSelectedIndex(0);
         
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAllActionPerformed
+       
+        StringBuilder my = new StringBuilder();
+        my.append("STUDENTNO\t\tLASTNAME\t\tINITIALS\t\tCOURSE\t\tYEAR OF STUDY \n");
+        my.append("___________________________________________________________________________________________________________________\n");
+        
+        for(Student s: arrStud){
+            my.append(s.getStudentNo()).append("\t").append("\t")
+                    .append(s.getLastname()).append("\t").append("\t")
+                    .append(s.getInitials()).append("\t").append("\t")
+                    .append(s.getCourse()).append("\t").append("\t")
+                    .append(s.getYearOfStudy()).append("\n");
+        }
+        
+        lblDisplay.setText(my.toString());
+    }//GEN-LAST:event_btnViewAllActionPerformed
 
     /**
      * @param args the command line arguments
