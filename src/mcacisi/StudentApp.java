@@ -117,6 +117,11 @@ public class StudentApp extends javax.swing.JFrame {
 
         btnUpdate.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnRemove.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnRemove.setText("Remove");
@@ -270,8 +275,8 @@ public class StudentApp extends javax.swing.JFrame {
     private void btnViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAllActionPerformed
        
         StringBuilder my = new StringBuilder();
-        my.append("STUDENTNO\t\tLASTNAME\t\tINITIALS\t\tCOURSE\t\tYEAR OF STUDY \n");
-        my.append("___________________________________________________________________________________________________________________\n");
+        my.append("STUDENTNO\t\tLASTNAME\t\tINITIALS\t\tCOURSE\t\t\tYEAR OF STUDY \n");
+        my.append("________________________________________________________________________________________________________________________________\n");
         
         for(Student s: arrStud){
             my.append(s.getStudentNo()).append("\t").append("\t")
@@ -287,18 +292,44 @@ public class StudentApp extends javax.swing.JFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         
         String searchStud = txtStudentNo.getText().trim();
+        boolean foundStud = false;
         
         for(Student s: arrStud){
             if(s.getStudentNo().equalsIgnoreCase(searchStud)){
-               JOptionPane.showMessageDialog(this, "Student found in system", searchStud, JOptionPane.INFORMATION_MESSAGE);
-            } else{
-               JOptionPane.showMessageDialog(this, "Student does not exist", searchStud, JOptionPane.INFORMATION_MESSAGE);
-               return;
-            }
+               foundStud = true;
+            } 
         }
         
+        if(foundStud = true){
+            JOptionPane.showMessageDialog(this, "Student found in list","searchStud", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+             JOptionPane.showMessageDialog(this, "Student does not ","searchStud", JOptionPane.INFORMATION_MESSAGE);
+        }
         
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        String updateStud = txtStudentNo.getText().trim();
+        String newLastname, newInitials, newCourse;
+        int newYearOfStudy;
+        
+        newLastname = txtLastname.getText();
+        newInitials = txtInitials.getText();
+        newCourse = (String)cmbCourse.getSelectedItem();
+        newYearOfStudy = Integer.parseInt((String) cmbYearOfStudy.getSelectedItem());
+        
+        
+        for(Student s: arrStud){
+            if(s.getStudentNo().equalsIgnoreCase(updateStud)){
+               s.setLastname(newLastname);
+               s.setInitials(newInitials);
+               s.setCourse(newCourse);
+               s.setYearOfStudy(newYearOfStudy);
+               
+               JOptionPane.showMessageDialog(this, "Student record updated successfully");
+            }
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
