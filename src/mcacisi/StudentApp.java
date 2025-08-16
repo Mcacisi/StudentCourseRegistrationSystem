@@ -289,6 +289,7 @@ public class StudentApp extends javax.swing.JFrame {
         lblDisplay.setText(my.toString());
     }//GEN-LAST:event_btnViewAllActionPerformed
 
+    
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         
         String searchStud = txtStudentNo.getText().trim();
@@ -312,6 +313,7 @@ public class StudentApp extends javax.swing.JFrame {
         String updateStud = txtStudentNo.getText().trim();
         String newLastname, newInitials, newCourse;
         int newYearOfStudy;
+        boolean foundStud = false;
         
         newLastname = txtLastname.getText();
         newInitials = txtInitials.getText();
@@ -321,14 +323,25 @@ public class StudentApp extends javax.swing.JFrame {
         
         for(Student s: arrStud){
             if(s.getStudentNo().equalsIgnoreCase(updateStud)){
-               s.setLastname(newLastname);
-               s.setInitials(newInitials);
+                foundStud = true;
+                
+               s.setLastname(newLastname.toUpperCase().trim());
+               s.setInitials(newInitials.toUpperCase().trim());
                s.setCourse(newCourse);
                s.setYearOfStudy(newYearOfStudy);
-               
-               JOptionPane.showMessageDialog(this, "Student record updated successfully");
             }
         }
+        
+            
+            if(foundStud){
+               btnViewAllActionPerformed(null);
+             JOptionPane.showMessageDialog(this, "Student record updated successfully"); 
+             
+            } else {
+             JOptionPane.showMessageDialog(this, "Student not found");   
+            }
+              
+       
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
