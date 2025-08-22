@@ -266,7 +266,7 @@ public class StudentApp extends javax.swing.JFrame {
         
         Student myStud = new Student(studNo, lastname, initials, yearOfStudy, course);
         arrStud.add(myStud);
-        JOptionPane.showMessageDialog(this, "Student successfully", "", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Student registered successfully", "", JOptionPane.INFORMATION_MESSAGE);
         
     }//GEN-LAST:event_btnRegisterActionPerformed
 
@@ -314,7 +314,7 @@ public class StudentApp extends javax.swing.JFrame {
             } 
         }
         
-        if(foundStud = true){
+        if(foundStud){
             JOptionPane.showMessageDialog(this, "Student found in list","searchStud", JOptionPane.INFORMATION_MESSAGE);
         } else {
              JOptionPane.showMessageDialog(this, "Student does not ","searchStud", JOptionPane.INFORMATION_MESSAGE);
