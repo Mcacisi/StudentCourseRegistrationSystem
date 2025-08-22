@@ -12,12 +12,12 @@ public class Student {
     String studentNo, lastname, initials, course;
     int yearOfStudy;
     
-    public Student(String studentNo, String lastname, String initials, String course, int yearOfStudy){
+    public Student(String studentNo, String lastname, String initials, int yearOfStudy, String course){
         this.studentNo = studentNo;
         this.lastname = lastname;
         this.initials = initials;
-        this.course = course;
         this.yearOfStudy = yearOfStudy;
+        this.course = course;
     }
 
     public String getStudentNo() {
@@ -32,13 +32,14 @@ public class Student {
         return initials;
     }
 
+    public int getYearOfStudy() {
+        return yearOfStudy;
+    }
+    
     public String getCourse() {
         return course;
     }
 
-    public int getYearOfStudy() {
-        return yearOfStudy;
-    }
 
     public void setStudentNo(String studentNo) {
         this.studentNo = studentNo;
@@ -52,17 +53,18 @@ public class Student {
         this.initials = initials;
     }
 
-    public void setCourse(String course) {
-        this.course = course;
-    }
-
     public void setYearOfStudy(int yearOfStudy) {
         this.yearOfStudy = yearOfStudy;
     }
     
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    
     @Override
     public String toString(){
-      return studentNo + "\t"+ lastname + "\t" + initials + "\t" + course + "\t" +  yearOfStudy;
+      return studentNo + "\t"+ lastname + "\t" + initials + "\t" + yearOfStudy + "\t" + course ;
      }
     
 }

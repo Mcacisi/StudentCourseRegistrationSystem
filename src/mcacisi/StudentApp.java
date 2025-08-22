@@ -275,7 +275,7 @@ public class StudentApp extends javax.swing.JFrame {
     private void btnViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAllActionPerformed
        
         StringBuilder my = new StringBuilder();
-        my.append("STUDENTNO\t\tLASTNAME\t\tINITIALS\t\tCOURSE\t\t\tYEAR OF STUDY \n");
+        my.append("%s %s %s %s %d",);
         my.append("________________________________________________________________________________________________________________________________\n");
         
         for(Student s: arrStud){
