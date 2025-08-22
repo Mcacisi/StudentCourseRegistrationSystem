@@ -6,6 +6,8 @@ package mcacisi;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import mcacisi.features.removeGui;
+import mcacisi.features.searchGui;
 
 /**
  * Use the Arraylist to store student objects for temp, then save them on a file
@@ -126,6 +128,11 @@ public class StudentApp extends javax.swing.JFrame {
 
         btnRemove.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnRemove.setText("Remove");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -305,7 +312,7 @@ public class StudentApp extends javax.swing.JFrame {
     
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         
-        String searchStud = txtStudentNo.getText().trim();
+       /* String searchStud = txtStudentNo.getText().trim();
         boolean foundStud = false;
         
         for(Student s: arrStud){
@@ -319,7 +326,10 @@ public class StudentApp extends javax.swing.JFrame {
         } else {
              JOptionPane.showMessageDialog(this, "Student does not ","searchStud", JOptionPane.INFORMATION_MESSAGE);
         }
-        
+        */
+       
+       searchGui search = new searchGui(); 
+       search.setVisible(true);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     
@@ -361,6 +371,11 @@ public class StudentApp extends javax.swing.JFrame {
               
        
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        removeGui remove = new removeGui();
+        remove.setVisible(true);
+    }//GEN-LAST:event_btnRemoveActionPerformed
 
     /**
      * @param args the command line arguments

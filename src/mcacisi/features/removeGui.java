@@ -31,6 +31,7 @@ public class removeGui extends javax.swing.JFrame {
         btnRemoveStudent = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("REMOVE_FORM");
 
         jLabel1.setText("ENTER STUDENT NUMBER");
 

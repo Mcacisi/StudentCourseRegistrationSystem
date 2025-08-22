@@ -31,6 +31,7 @@ public class searchGui extends javax.swing.JFrame {
         btnSearchStudent = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SEARCH_FORM");
 
         jLabel1.setText("ENTER STUDENT NUMBER");
 
