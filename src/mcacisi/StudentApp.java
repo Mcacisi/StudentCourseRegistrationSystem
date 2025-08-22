@@ -221,11 +221,13 @@ public class StudentApp extends javax.swing.JFrame {
         String studNo, lastname, initials, course;
         int yearOfStudy;
 
+        
         studNo = txtStudentNo.getText().trim();
                 if(studNo.isEmpty()){
                     JOptionPane.showMessageDialog(this, "Please enter student number", "Missing Data input", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
+                
                 
         lastname = txtLastname.getText().toUpperCase().trim();
                 if(lastname.isEmpty()){
@@ -233,12 +235,17 @@ public class StudentApp extends javax.swing.JFrame {
                     return;
                 }
                 
+                
         initials = txtInitials.getText().toUpperCase().trim();
                 if(initials.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Please enter your Initials", "Missing Data input", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 
+                
+         yearOfStudy =  Integer.parseInt((String)cmbYearOfStudy.getSelectedItem());
+         
+         
         course = (String) cmbCourse.getSelectedItem();
                 if(cmbCourse.getSelectedIndex()==0){
                     JOptionPane.showMessageDialog(this, "Please select the appropriate course", "Course selection", JOptionPane.WARNING_MESSAGE);
@@ -246,7 +253,7 @@ public class StudentApp extends javax.swing.JFrame {
                 }
                  
                 
-        yearOfStudy =  Integer.parseInt((String)cmbYearOfStudy.getSelectedItem());
+
 
         
         for (Student ms : arrStud) {
@@ -256,7 +263,7 @@ public class StudentApp extends javax.swing.JFrame {
             }
         }
         
-        Student myStud = new Student(studNo, lastname, initials, course, yearOfStudy);
+        Student myStud = new Student(studNo, lastname, initials, yearOfStudy, course);
         arrStud.add(myStud);
         JOptionPane.showMessageDialog(this, "Student successfully", "", JOptionPane.INFORMATION_MESSAGE);
         
@@ -290,6 +297,7 @@ public class StudentApp extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewAllActionPerformed
 
     
+    
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         
         String searchStud = txtStudentNo.getText().trim();
@@ -309,6 +317,8 @@ public class StudentApp extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    
+    
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         String updateStud = txtStudentNo.getText().trim();
         String newLastname, newInitials, newCourse;
@@ -317,18 +327,21 @@ public class StudentApp extends javax.swing.JFrame {
         
         newLastname = txtLastname.getText();
         newInitials = txtInitials.getText();
-        newCourse = (String)cmbCourse.getSelectedItem();
         newYearOfStudy = Integer.parseInt((String) cmbYearOfStudy.getSelectedItem());
+        newCourse = (String)cmbCourse.getSelectedItem();
+        
         
         
         for(Student s: arrStud){
             if(s.getStudentNo().equalsIgnoreCase(updateStud)){
                 foundStud = true;
                 
+                
                s.setLastname(newLastname.toUpperCase().trim());
                s.setInitials(newInitials.toUpperCase().trim());
-               s.setCourse(newCourse);
                s.setYearOfStudy(newYearOfStudy);
+               s.setCourse(newCourse);
+               
             }
         }
         
