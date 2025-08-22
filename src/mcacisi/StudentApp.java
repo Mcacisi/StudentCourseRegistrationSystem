@@ -104,6 +104,7 @@ public class StudentApp extends javax.swing.JFrame {
         cmbYearOfStudy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
 
         lblDisplay.setColumns(20);
+        lblDisplay.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         lblDisplay.setRows(5);
         jScrollPane1.setViewportView(lblDisplay);
 
@@ -279,18 +280,22 @@ public class StudentApp extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnClearActionPerformed
 
+    
+    
     private void btnViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAllActionPerformed
        
         StringBuilder my = new StringBuilder();
-        my.append("%s %s %s %s %d",);
+        my.append(String.format("%-15s %-15s %-15s %-10s %-20s\n", "STUDENTNO", "SURNAME", "INITIALS", "YEAR", "COURSE"));
         my.append("________________________________________________________________________________________________________________________________\n");
         
         for(Student s: arrStud){
-            my.append(s.getStudentNo()).append("\t").append("\t")
-                    .append(s.getLastname()).append("\t").append("\t")
-                    .append(s.getInitials()).append("\t").append("\t")
-                    .append(s.getCourse()).append("\t").append("\t")
-                    .append(s.getYearOfStudy()).append("\n");
+            my.append(String.format("%-15s %-15s %-15s %-10d %-30s\n", 
+                      s.studentNo,
+                      s.lastname,
+                       s.initials,
+                       s.yearOfStudy,
+                       s.course));
+            
         }
         
         lblDisplay.setText(my.toString());
