@@ -4,19 +4,26 @@
  */
 package mcacisi.features;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import mcacisi.Student;
+
 /**
  *
  * @author Mcacisi Sithole
  */
 public class searchGui extends javax.swing.JFrame {
 
-    /**
-     * Creates new form searchGui
-     */
-    public searchGui() {
+    private ArrayList<Student> arrStud = new ArrayList<> ();
+    
+    
+    public searchGui(ArrayList <Student> arrStud) {
+        this.arrStud = arrStud;
         initComponents();
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,6 +49,11 @@ public class searchGui extends javax.swing.JFrame {
         });
 
         btnSearchStudent.setText("SEARCH_STUDENT");
+        btnSearchStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchStudentActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,40 +88,35 @@ public class searchGui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEnterStudentNumberActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    
+    
+    
+    private void btnSearchStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchStudentActionPerformed
+        String studNo;
+        boolean found = false;
+        
+        studNo = txtEnterStudentNumber.getText().trim();
+        
+        
+        for(Student studList:arrStud){
+            if(studList.getStudentNo().equals(studNo)){
+               found = true;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(searchGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(searchGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(searchGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(searchGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        
+        
+        
+        if(found){
+            JOptionPane.showMessageDialog(this, "Student found in list","searchStud", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+             JOptionPane.showMessageDialog(this, "Student does not exists ","searchStud", JOptionPane.INFORMATION_MESSAGE);
+        
+        }
+        
+    }//GEN-LAST:event_btnSearchStudentActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new searchGui().setVisible(true);
-            }
-        });
-    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnSearchStudent;

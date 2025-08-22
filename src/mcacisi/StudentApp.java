@@ -311,25 +311,10 @@ public class StudentApp extends javax.swing.JFrame {
     
     
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        
-       /* String searchStud = txtStudentNo.getText().trim();
-        boolean foundStud = false;
-        
-        for(Student s: arrStud){
-            if(s.getStudentNo().equalsIgnoreCase(searchStud)){
-               foundStud = true;
-            } 
-        }
-        
-        if(foundStud){
-            JOptionPane.showMessageDialog(this, "Student found in list","searchStud", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-             JOptionPane.showMessageDialog(this, "Student does not ","searchStud", JOptionPane.INFORMATION_MESSAGE);
-        }
-        */
-       
-       searchGui search = new searchGui(); 
+
+       searchGui search = new searchGui(arrStud); 
        search.setVisible(true);
+       
     }//GEN-LAST:event_btnSearchActionPerformed
 
     
@@ -372,6 +357,9 @@ public class StudentApp extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    
+    
+    
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         removeGui remove = new removeGui();
         remove.setVisible(true);
