@@ -86,7 +86,7 @@ public class removeGui extends javax.swing.JFrame {
         
         
         studNo = txtEnterStudentNumber.getText().trim();
-                if(studNo.isEmpty()){
+                if(studNo.isEmpty() || studNo.length()< 9){
                    JOptionPane.showMessageDialog(this, "Please enter student number", "Missing data input", JOptionPane.INFORMATION_MESSAGE);
                    return;
                 }

@@ -320,11 +320,16 @@ public class StudentApp extends javax.swing.JFrame {
     
     
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        String updateStud = txtStudentNo.getText().trim();
+        String updateStud;
         String newLastname, newInitials, newCourse;
         int newYearOfStudy;
         boolean foundStud = false;
         
+        updateStud = txtStudentNo.getText().trim();
+                     if(updateStud.isEmpty() || updateStud.length()< 9){
+                         JOptionPane.showMessageDialog(this, "Please enter student number", "Missing data input", JOptionPane.INFORMATION_MESSAGE);
+                     }
+                     
         newLastname = txtLastname.getText();
         newInitials = txtInitials.getText();
         newYearOfStudy = Integer.parseInt((String) cmbYearOfStudy.getSelectedItem());
@@ -341,7 +346,6 @@ public class StudentApp extends javax.swing.JFrame {
                s.setInitials(newInitials.toUpperCase().trim());
                s.setYearOfStudy(newYearOfStudy);
                s.setCourse(newCourse);
-               
             }
         }
         

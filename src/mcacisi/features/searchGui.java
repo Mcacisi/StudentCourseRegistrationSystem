@@ -96,7 +96,7 @@ public class searchGui extends javax.swing.JFrame {
         boolean found = false;
         
         studNo = txtEnterStudentNumber.getText().trim();
-                if(studNo.isEmpty()){
+                if(studNo.isEmpty() || studNo.length()< 9){
                    JOptionPane.showMessageDialog(this, "Please enter student number", "Missing data inpput", JOptionPane.INFORMATION_MESSAGE);
                    return;
                 }
