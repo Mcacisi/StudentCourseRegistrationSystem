@@ -231,7 +231,7 @@ public class StudentApp extends javax.swing.JFrame {
 
         
         studNo = txtStudentNo.getText().trim();
-                if(studNo.isEmpty()){
+                if(studNo.isEmpty() || studNo.length()< 9){
                     JOptionPane.showMessageDialog(this, "Please enter student number", "Missing Data input", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
@@ -350,8 +350,13 @@ public class StudentApp extends javax.swing.JFrame {
                btnViewAllActionPerformed(null);
              JOptionPane.showMessageDialog(this, "Student record updated successfully"); 
              
-            } else {
-             JOptionPane.showMessageDialog(this, "Student not found");   
+             
+            } else if(updateStud.isEmpty()){
+             JOptionPane.showMessageDialog(this, "Please enter student number");   
+             
+             
+            } else{
+                JOptionPane.showMessageDialog(this, "Student was not found in list", "SearchStudent", JOptionPane.INFORMATION_MESSAGE);
             }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
