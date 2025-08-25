@@ -361,7 +361,7 @@ public class StudentApp extends javax.swing.JFrame {
     
     
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        removeGui remove = new removeGui();
+        removeGui remove = new removeGui(arrStud);
         remove.setVisible(true);
     }//GEN-LAST:event_btnRemoveActionPerformed
 

@@ -98,8 +98,8 @@ public class searchGui extends javax.swing.JFrame {
         studNo = txtEnterStudentNumber.getText().trim();
         
         
-        for(Student studList:arrStud){
-            if(studList.getStudentNo().equals(studNo)){
+        for(Student stud:arrStud){
+            if(stud.getStudentNo().equals(studNo)){
                found = true;
             }
         }
