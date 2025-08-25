@@ -88,6 +88,7 @@ public class removeGui extends javax.swing.JFrame {
         studNo = txtEnterStudentNumber.getText().trim();
                 if(studNo.isEmpty()){
                    JOptionPane.showMessageDialog(this, "Please enter student number", "Missing data input", JOptionPane.INFORMATION_MESSAGE);
+                   return;
                 }
                 
                 
@@ -97,7 +98,7 @@ public class removeGui extends javax.swing.JFrame {
                       removeStud = stud;
                       
                     }else{
-                       JOptionPane.showMessageDialog(this, "Student not found", "Registered students", JOptionPane.INFORMATION_MESSAGE);
+                       JOptionPane.showMessageDialog(this, "Student was not found", "Registered students", JOptionPane.INFORMATION_MESSAGE);
                    }        
                 }
                 
@@ -105,10 +106,16 @@ public class removeGui extends javax.swing.JFrame {
                 
                 if(found){
                    response = JOptionPane.showConfirmDialog(this, "Do you want to remove student?", "Remove registered student", JOptionPane.YES_NO_OPTION);
+                   
+                   
                    if(response == JOptionPane.YES_OPTION){
                        arrStud.remove(removeStud);
                        JOptionPane.showMessageDialog(this, "Student removed successfully", "Remove student", JOptionPane.INFORMATION_MESSAGE);
+                       
+                   } else {
+                       JOptionPane.showMessageDialog(this, "Student not removed in list", "Remove Student", JOptionPane.INFORMATION_MESSAGE);
                    }
+                   
                 }
     }//GEN-LAST:event_btnRemoveStudentActionPerformed
 

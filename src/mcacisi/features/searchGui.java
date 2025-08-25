@@ -96,8 +96,13 @@ public class searchGui extends javax.swing.JFrame {
         boolean found = false;
         
         studNo = txtEnterStudentNumber.getText().trim();
+                if(studNo.isEmpty()){
+                   JOptionPane.showMessageDialog(this, "Please enter student number", "Missing data inpput", JOptionPane.INFORMATION_MESSAGE);
+                   return;
+                }
         
-        
+                
+                
         for(Student stud:arrStud){
             if(stud.getStudentNo().equals(studNo)){
                found = true;

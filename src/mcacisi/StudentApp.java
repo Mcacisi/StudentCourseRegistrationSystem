@@ -290,7 +290,7 @@ public class StudentApp extends javax.swing.JFrame {
     
     
     private void btnViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAllActionPerformed
-       
+
         StringBuilder my = new StringBuilder();
         my.append(String.format("%-15s %-15s %-15s %-10s %-20s\n", "STUDENTNO", "SURNAME", "INITIALS", "YEAR", "COURSE"));
         my.append("________________________________________________________________________________________________________________________________\n");
@@ -353,18 +353,34 @@ public class StudentApp extends javax.swing.JFrame {
             } else {
              JOptionPane.showMessageDialog(this, "Student not found");   
             }
-              
-       
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    
-    
+   
     
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         removeGui remove = new removeGui(arrStud);
         remove.setVisible(true);
     }//GEN-LAST:event_btnRemoveActionPerformed
 
+    
+    
+    //Method to save student objects into a binary file
+    //Method to reload binary file data bact into arraylist to display
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
