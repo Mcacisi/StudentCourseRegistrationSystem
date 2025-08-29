@@ -4,6 +4,9 @@
  */
 package mcacisi;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import mcacisi.features.removeGui;
@@ -419,7 +422,18 @@ public class StudentApp extends javax.swing.JFrame {
     
     //Method to save student objects into a binary file
     public void saveToFile(){
-        
+    
+       try
+           {
+            ObjectOutputStream in = new ObjectOutputStream(new FileOutputStream("studentFile.dat"));
+            in.writeObject(arrStud);
+            in.close();
+            JOptionPane.showMessageDialog(this, "Student Added successfully to system", "Registration Successful", JOptionPane.PLAIN_MESSAGE);
+            
+           }catch(IOException e){
+            JOptionPane.showMessageDialog(this, "Failed to add student", "Error saving", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
     }
     
     
