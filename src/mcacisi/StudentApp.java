@@ -23,6 +23,7 @@ public class StudentApp extends javax.swing.JFrame {
      */
     public StudentApp() {
         initComponents();
+        reloadStudentFromFile();
     }
 
     /**
