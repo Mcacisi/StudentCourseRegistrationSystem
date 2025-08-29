@@ -356,6 +356,8 @@ public class StudentApp extends javax.swing.JFrame {
                          return;
                      }
                      
+                     Integer.parseInt(updateStud);
+                     
         }catch(NumberFormatException e){
                JOptionPane.showMessageDialog(this, "Only integers will be accepted as student number\n Alphabets are not allowed", "StudentNo input Error", JOptionPane.INFORMATION_MESSAGE);
                return;      
