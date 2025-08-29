@@ -120,13 +120,25 @@ public class searchGui extends javax.swing.JFrame {
         String studNo;
         boolean found = false;
         
+        
+        
+    try
+       {
         studNo = txtEnterStudentNumber.getText().trim();
                 if(studNo.isEmpty() || studNo.length()< 9){
-                   JOptionPane.showMessageDialog(this, "Please enter student number", "Missing data inpput", JOptionPane.INFORMATION_MESSAGE);
+                   JOptionPane.showMessageDialog(this, "Please enter student number\n Student number consist of 9 characters", "Missing data inpput", JOptionPane.INFORMATION_MESSAGE);
                    return;
                 }
-        
                 
+                Integer.parseInt(studNo);
+                
+       }catch(NumberFormatException e){
+             JOptionPane.showMessageDialog(this, "Only integers will be accepted as student number\n Alphabets are not allowed", "StudentNo input Error", JOptionPane.INFORMATION_MESSAGE);
+               return;
+        
+    } 
+               
+    
                 
         for(Student stud:arrStud){
             if(stud.getStudentNo().equals(studNo)){
