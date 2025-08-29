@@ -236,13 +236,24 @@ public class StudentApp extends javax.swing.JFrame {
         int yearOfStudy;
 
         
+    try
+       {
         studNo = txtStudentNo.getText().trim();
                 if(studNo.isEmpty() || studNo.length()< 9){
-                    JOptionPane.showMessageDialog(this, "Please enter student number", "Missing Data input", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Please enter student number\n Student number consist of 9 characters", "Missing Data input", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 
+                Integer.parseInt(studNo);
                 
+       } catch(NumberFormatException e){
+               JOptionPane.showMessageDialog(this, "Only integers will be accepted as student number\n Alphabets are not allowed", "StudentNo input Error", JOptionPane.INFORMATION_MESSAGE);
+               return;
+       }       
+                
+    
+    
+    
         lastname = txtLastname.getText().toUpperCase().trim();
                 if(lastname.isEmpty()){
                    JOptionPane.showMessageDialog(this, "Please enter your lastname", "Missing Data input", JOptionPane.WARNING_MESSAGE);
@@ -250,14 +261,18 @@ public class StudentApp extends javax.swing.JFrame {
                 }
                 
                 
+                
+                
         initials = txtInitials.getText().toUpperCase().trim();
                 if(initials.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Please enter your Initials", "Missing Data input", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
+               
                 
                 
          yearOfStudy =  Integer.parseInt((String)cmbYearOfStudy.getSelectedItem());
+         
          
          
         course = (String) cmbCourse.getSelectedItem();
@@ -268,7 +283,6 @@ public class StudentApp extends javax.swing.JFrame {
                  
                 
 
-
         
         for (Student ms : arrStud) {
             if (ms.getStudentNo().equals(studNo)) {
@@ -276,6 +290,8 @@ public class StudentApp extends javax.swing.JFrame {
                 return;
             }
         }
+        
+        
         
         Student myStud = new Student(studNo, lastname, initials, yearOfStudy, course);
         arrStud.add(myStud);
@@ -331,10 +347,20 @@ public class StudentApp extends javax.swing.JFrame {
         int newYearOfStudy;
         boolean foundStud = false;
         
+        
+    try
+        {
         updateStud = txtStudentNo.getText().trim();
                      if(updateStud.isEmpty() || updateStud.length()< 9){
-                         JOptionPane.showMessageDialog(this, "Please enter student number", "Missing data input", JOptionPane.INFORMATION_MESSAGE);
+                         JOptionPane.showMessageDialog(this, "Please enter student number\n Student number consist of 9 characters", "Missing data input", JOptionPane.INFORMATION_MESSAGE);
+                         return;
                      }
+                     
+        }catch(NumberFormatException e){
+               JOptionPane.showMessageDialog(this, "Only integers will be accepted as student number\n Alphabets are not allowed", "StudentNo input Error", JOptionPane.INFORMATION_MESSAGE);
+               return;      
+    }            
+                     
                      
         newLastname = txtLastname.getText();
         newInitials = txtInitials.getText();
