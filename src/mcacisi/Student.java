@@ -9,8 +9,8 @@ package mcacisi;
  * @author Mcacisi Sithole
  */
 public class Student {
-    String studentNo, lastname, initials, course;
-    int yearOfStudy;
+    private String studentNo, lastname, initials, course;
+    private int yearOfStudy;
     
     public Student(String studentNo, String lastname, String initials, int yearOfStudy, String course){
         this.studentNo = studentNo;

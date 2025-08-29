@@ -10,7 +10,7 @@ import mcacisi.features.removeGui;
 import mcacisi.features.searchGui;
 
 /**
- * Use the Arraylist to store student objects for temp, then save them on a file
+ * Use the Array list to store student objects for temp, then save them on a file
  *
  * @author Mcacisi Sithole
  */
@@ -100,6 +100,11 @@ public class StudentApp extends javax.swing.JFrame {
 
         btnExit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         cmbCourse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "                          -- SELECT COURSE --", "ACCOUNTING", "AGRICULTURAL MANAGEMENT", "ANALYTICAL CHEMISTRY", "FASHION", "HUMAN RESOURCE MANAGEMENT", "INFORMATION OF TECHNOLOGY", "CHEMICAL ENGINEERING", "CIVIL ENGINEERING ", "ELECTRONIC ENGINEERING", "MECHANICAL ENGINEERING", "INDUSTRIAL ENGINEERING", "POWER ENGINEERING", "MARKETING", "LABOUR LAW", "POLICING", "SAFETY MANAGEMENT", "TEACHING (SENIOR PHASE & FET)", "TOURISM" }));
 
@@ -297,11 +302,11 @@ public class StudentApp extends javax.swing.JFrame {
         
         for(Student s: arrStud){
             my.append(String.format("%-15s %-15s %-15s %-10d %-30s\n", 
-                      s.studentNo,
-                      s.lastname,
-                       s.initials,
-                       s.yearOfStudy,
-                       s.course));
+                      s.getStudentNo(),
+                      s.getInitials(),
+                       s.getLastname(),
+                       s.getYearOfStudy(),
+                       s.getCourse()));
             
         }
         
@@ -370,6 +375,16 @@ public class StudentApp extends javax.swing.JFrame {
         removeGui remove = new removeGui(arrStud);
         remove.setVisible(true);
     }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+     int response;
+       
+       response = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
+       
+                 if(response == JOptionPane.YES_OPTION){
+                    this.dispose();
+                 }
+    }//GEN-LAST:event_btnExitActionPerformed
 
     
     
