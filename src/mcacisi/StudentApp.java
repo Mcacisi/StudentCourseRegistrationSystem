@@ -389,8 +389,15 @@ public class StudentApp extends javax.swing.JFrame {
     
     
     //Method to save student objects into a binary file
-    //Method to reload binary file data bact into arraylist to display
+    public void saveToFile(){
+        
+    }
     
+    
+    //Method to reload binary file data bact into arraylist to display
+    public void reloadStudentFromFile(){
+        
+    }
     
     
     
