@@ -4,8 +4,11 @@
  */
 package mcacisi;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -414,6 +417,7 @@ public class StudentApp extends javax.swing.JFrame {
        response = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
        
                  if(response == JOptionPane.YES_OPTION){
+                    saveToFile();
                     this.dispose();
                  }
     }//GEN-LAST:event_btnExitActionPerformed
@@ -425,9 +429,9 @@ public class StudentApp extends javax.swing.JFrame {
     
        try
            {
-            ObjectOutputStream in = new ObjectOutputStream(new FileOutputStream("studentFile.dat"));
-            in.writeObject(arrStud);
-            in.close();
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("studentFile.dat"));
+            out.writeObject(arrStud);
+            out.close();
             JOptionPane.showMessageDialog(this, "Student Added successfully to system", "Registration Successful", JOptionPane.PLAIN_MESSAGE);
             
            }catch(IOException e){
@@ -440,6 +444,21 @@ public class StudentApp extends javax.swing.JFrame {
     //Method to reload binary file data bact into arraylist to display
     public void reloadStudentFromFile(){
         
+        try
+           {
+               File studFile = new File("studentFile.dat");
+               
+               if(studFile.exists()){
+               ObjectInputStream in = new ObjectInputStream(new FileInputStream(studFile));
+               arrStud = (ArrayList <Student>)in.readObject();
+               JOptionPane.showMessageDialog(this, "LOADING.....", "Loading students in system", JOptionPane.PLAIN_MESSAGE);
+               in.close();
+                   
+               }
+               
+           }catch(IOException | ClassNotFoundException e){
+               JOptionPane.showMessageDialog(this, "", "Reloading Error", JOptionPane.ERROR_MESSAGE);
+           }
     }
     
     

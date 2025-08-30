@@ -4,13 +4,16 @@
  */
 package mcacisi;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Mcacisi Sithole
  */
-public class Student {
+public class Student implements Serializable{
     private String studentNo, lastname, initials, course;
     private int yearOfStudy;
+    
     
     public Student(String studentNo, String lastname, String initials, int yearOfStudy, String course){
         this.studentNo = studentNo;
@@ -20,6 +23,8 @@ public class Student {
         this.course = course;
     }
 
+    
+    
     public String getStudentNo() {
         return studentNo;
     }
@@ -41,6 +46,7 @@ public class Student {
     }
 
 
+    
     public void setStudentNo(String studentNo) {
         this.studentNo = studentNo;
     }
@@ -61,6 +67,7 @@ public class Student {
         this.course = course;
     }
 
+    
     
     @Override
     public String toString(){
