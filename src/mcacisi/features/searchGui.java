@@ -6,7 +6,7 @@ package mcacisi.features;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import mcacisi.Student;
+import mcacisi.StudentPD;
 
 /**
  *
@@ -14,10 +14,10 @@ import mcacisi.Student;
  */
 public class searchGui extends javax.swing.JFrame {
 
-    private ArrayList<Student> arrStud = new ArrayList<> ();
+    private ArrayList<StudentPD> arrStud = new ArrayList<> ();
     
     
-    public searchGui(ArrayList <Student> arrStud) {
+    public searchGui(ArrayList <StudentPD> arrStud) {
         this.arrStud = arrStud;
         initComponents();
     }
@@ -126,7 +126,7 @@ public class searchGui extends javax.swing.JFrame {
        {
         studNo = txtEnterStudentNumber.getText().trim();
                 if(studNo.isEmpty() || studNo.length()< 9){
-                   JOptionPane.showMessageDialog(this, "Please enter student number\n Student number consist of 9 characters", "Missing data inpput", JOptionPane.INFORMATION_MESSAGE);
+                   JOptionPane.showMessageDialog(this, "Please enter student number\n StudentPD number consist of 9 characters", "Missing data inpput", JOptionPane.INFORMATION_MESSAGE);
                    return;
                 }
                 
@@ -140,7 +140,7 @@ public class searchGui extends javax.swing.JFrame {
                
     
                 
-        for(Student stud:arrStud){
+        for(StudentPD stud:arrStud){
             if(stud.getStudentNo().equals(studNo)){
                found = true;
             }
@@ -149,9 +149,9 @@ public class searchGui extends javax.swing.JFrame {
         
         
         if(found){
-            JOptionPane.showMessageDialog(this, "Student found in list","searchStud", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "StudentPD found in list","searchStud", JOptionPane.INFORMATION_MESSAGE);
         } else {
-             JOptionPane.showMessageDialog(this, "Student does not exists ","searchStud", JOptionPane.INFORMATION_MESSAGE);
+             JOptionPane.showMessageDialog(this, "StudentPD does not exists ","searchStud", JOptionPane.INFORMATION_MESSAGE);
         
         }
         

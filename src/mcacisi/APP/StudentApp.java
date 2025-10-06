@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package mcacisi;
+package mcacisi.APP;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,6 +12,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
+import mcacisi.StudentPD;
 import mcacisi.features.removeGui;
 import mcacisi.features.searchGui;
 
@@ -22,7 +24,7 @@ import mcacisi.features.searchGui;
  */
 public class StudentApp extends javax.swing.JFrame {
 
-    private ArrayList<Student> arrStud = new ArrayList<>();
+    private ArrayList<StudentPD> arrStud = new ArrayList<>();
 
     /**
      * Creates new form StudentApp
@@ -62,11 +64,11 @@ public class StudentApp extends javax.swing.JFrame {
         btnRemove = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Student  Course Registration System");
+        setTitle("StudentPD  Course Registration System");
         setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel1.setText("Student Number :");
+        jLabel1.setText("StudentPD Number :");
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setText("Lastname :");
@@ -238,26 +240,15 @@ public class StudentApp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        String studNo, lastname, initials, course;
-        int yearOfStudy;
+        String  lastname, initials, course;
+        int studNo,yearOfStudy;
 
-        
-    try
-       {
-        studNo = txtStudentNo.getText().trim();
-                if(studNo.isEmpty() || studNo.length()< 9){
-                    JOptionPane.showMessageDialog(this, "Please enter student number\n Student number consist of 9 characters", "Missing Data input", JOptionPane.WARNING_MESSAGE);
+
+        studNo = Integer.parseInt(txtStudentNo.getText().trim());
+                if(studNo<0){
+                    JOptionPane.showMessageDialog(this,"Please enter valid Student NUmber" + studNo);
                     return;
                 }
-                
-                Integer.parseInt(studNo);
-                
-       } catch(NumberFormatException e){
-               JOptionPane.showMessageDialog(this, "Only integers will be accepted as student number\n Alphabets are not allowed", "StudentNo input Error", JOptionPane.INFORMATION_MESSAGE);
-               return;
-       }       
-                
-    
     
     
         lastname = txtLastname.getText().toUpperCase().trim();
@@ -290,18 +281,18 @@ public class StudentApp extends javax.swing.JFrame {
                 
 
         
-        for (Student ms : arrStud) {
+        for (StudentPD ms : arrStud) {
             if (ms.getStudentNo().equals(studNo)) {
-                JOptionPane.showMessageDialog(this, "Student Number already exists", "Duplicate students", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "StudentPD Number already exists", "Duplicate students", JOptionPane.WARNING_MESSAGE);
                 return;
             }
         }
         
         
         
-        Student myStud = new Student(studNo, lastname, initials, yearOfStudy, course);
+        StudentPD myStud = new StudentPD(studNo, lastname, initials, yearOfStudy, course);
         arrStud.add(myStud);
-        JOptionPane.showMessageDialog(this, "Student registered successfully", "", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "StudentPD registered successfully", "", JOptionPane.INFORMATION_MESSAGE);
         
     }//GEN-LAST:event_btnRegisterActionPerformed
 
@@ -323,7 +314,7 @@ public class StudentApp extends javax.swing.JFrame {
         my.append(String.format("%-15s %-15s %-15s %-10s %-20s\n", "STUDENTNO", "SURNAME", "INITIALS", "YEAR", "COURSE"));
         my.append("________________________________________________________________________________________________________________________________\n");
         
-        for(Student s: arrStud){
+        for(StudentPD s: arrStud){
             my.append(String.format("%-15s %-15s %-15s %-10d %-30s\n", 
                       s.getStudentNo(),
                       s.getInitials(),
@@ -358,7 +349,7 @@ public class StudentApp extends javax.swing.JFrame {
         {
         updateStud = txtStudentNo.getText().trim();
                      if(updateStud.isEmpty() || updateStud.length()< 9){
-                         JOptionPane.showMessageDialog(this, "Please enter student number\n Student number consist of 9 characters", "Missing data input", JOptionPane.INFORMATION_MESSAGE);
+                         JOptionPane.showMessageDialog(this, "Please enter student number\n StudentPD number consist of 9 characters", "Missing data input", JOptionPane.INFORMATION_MESSAGE);
                          return;
                      }
                      
@@ -377,7 +368,7 @@ public class StudentApp extends javax.swing.JFrame {
         
         
         
-        for(Student s: arrStud){
+        for(StudentPD s: arrStud){
             if(s.getStudentNo().equalsIgnoreCase(updateStud)){
                 foundStud = true;
                 
@@ -392,7 +383,7 @@ public class StudentApp extends javax.swing.JFrame {
             
             if(foundStud){
                btnViewAllActionPerformed(null);
-             JOptionPane.showMessageDialog(this, "Student record updated successfully"); 
+             JOptionPane.showMessageDialog(this, "StudentPD record updated successfully");
              
              
             } else if(updateStud.isEmpty()){
@@ -400,7 +391,7 @@ public class StudentApp extends javax.swing.JFrame {
              
              
             } else{
-                JOptionPane.showMessageDialog(this, "Student was not found in list", "SearchStudent", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "StudentPD was not found in list", "SearchStudent", JOptionPane.INFORMATION_MESSAGE);
             }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -432,7 +423,7 @@ public class StudentApp extends javax.swing.JFrame {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("studentFile.dat"));
             out.writeObject(arrStud);
             out.close();
-            JOptionPane.showMessageDialog(this, "Student Added successfully to system", "Registration Successful", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this, "StudentPD Added successfully to system", "Registration Successful", JOptionPane.PLAIN_MESSAGE);
             
            }catch(IOException e){
             JOptionPane.showMessageDialog(this, "Failed to add student", "Error saving", JOptionPane.ERROR_MESSAGE);
@@ -450,7 +441,7 @@ public class StudentApp extends javax.swing.JFrame {
                
                if(studFile.exists()){
                ObjectInputStream in = new ObjectInputStream(new FileInputStream(studFile));
-               arrStud = (ArrayList <Student>)in.readObject();
+               arrStud = (ArrayList <StudentPD>)in.readObject();
                JOptionPane.showMessageDialog(this, "LOADING.....", "Loading students in system", JOptionPane.PLAIN_MESSAGE);
                in.close();
                    

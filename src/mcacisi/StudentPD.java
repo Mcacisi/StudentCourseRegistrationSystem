@@ -1,21 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mcacisi;
 
 import java.io.Serializable;
 
 /**
- *
+ * THIS IS A STUDENT REGISTRATION SYSTEM WHICH WILL SAVE STUDENT IN A DATABASE
+ * USING CRUD METHODS AND A 3-TIER ARCHITECTURE (PDDA CLASSES)
  * @author Mcacisi Sithole
  */
-public class Student implements Serializable{
-    private String studentNo, lastname, initials, course;
-    private int yearOfStudy;
+
+
+public class StudentPD implements Serializable{
+    private String  lastname, initials, course;
+    private int studentNo,yearOfStudy;
     
-    
-    public Student(String studentNo, String lastname, String initials, int yearOfStudy, String course){
+    public StudentPD(){
+     studentNo = 0;
+     lastname = "";
+     initials = "";
+     course = "";
+     yearOfStudy = 0;
+    }
+
+
+    public StudentPD(int studentNo, String lastname, String initials, int yearOfStudy, String course){
         this.studentNo = studentNo;
         this.lastname = lastname;
         this.initials = initials;
@@ -25,7 +33,7 @@ public class Student implements Serializable{
 
     
     
-    public String getStudentNo() {
+    public int getStudentNo() {
         return studentNo;
     }
 
@@ -47,7 +55,7 @@ public class Student implements Serializable{
 
 
     
-    public void setStudentNo(String studentNo) {
+    public void setStudentNo(int studentNo) {
         this.studentNo = studentNo;
     }
 
@@ -73,5 +81,9 @@ public class Student implements Serializable{
     public String toString(){
       return studentNo + "\t"+ lastname + "\t" + initials + "\t" + yearOfStudy + "\t" + course ;
      }
+
+
+     //INVOKE ALL THE DA METHODS SINCE PD IS THE MIDDLEMAN
+
     
 }

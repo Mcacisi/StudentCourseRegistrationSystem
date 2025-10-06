@@ -6,7 +6,7 @@ package mcacisi.features;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import mcacisi.Student;
+import mcacisi.StudentPD;
 
 /**
  *
@@ -14,12 +14,12 @@ import mcacisi.Student;
  */
 public class removeGui extends javax.swing.JFrame {
     
-     private ArrayList <Student> arrStud = new ArrayList<> ();
+     private ArrayList <StudentPD> arrStud = new ArrayList<> ();
      
     /**
      * Creates new form removeGui
      */
-    public removeGui(ArrayList <Student> arrStud) {
+    public removeGui(ArrayList <StudentPD> arrStud) {
         this.arrStud = arrStud;
         initComponents();
     }
@@ -103,7 +103,7 @@ public class removeGui extends javax.swing.JFrame {
 
     private void btnRemoveStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveStudentActionPerformed
         String studNo;
-        Student removeStud = null;
+        StudentPD removeStud = null;
         int response;
         boolean found = false;
         
@@ -113,7 +113,7 @@ public class removeGui extends javax.swing.JFrame {
        {
         studNo = txtEnterStudentNumber.getText().trim();
                 if(studNo.isEmpty() || studNo.length()< 9){
-                   JOptionPane.showMessageDialog(this, "Please enter student number\n Student number consist of 9 characters", "Missing data input", JOptionPane.INFORMATION_MESSAGE);
+                   JOptionPane.showMessageDialog(this, "Please enter student number\n StudentPD number consist of 9 characters", "Missing data input", JOptionPane.INFORMATION_MESSAGE);
                    return;
                 }
                 
@@ -127,13 +127,13 @@ public class removeGui extends javax.swing.JFrame {
                 
                 
                 
-                for(Student stud : arrStud){
+                for(StudentPD stud : arrStud){
                    if(stud.getStudentNo().equals(studNo)){
                       found = true;
                       removeStud = stud;
                       
                     }else{
-                       JOptionPane.showMessageDialog(this, "Student was not found", "Registered students", JOptionPane.INFORMATION_MESSAGE);
+                       JOptionPane.showMessageDialog(this, "StudentPD was not found", "Registered students", JOptionPane.INFORMATION_MESSAGE);
                    }        
                 }
                 
@@ -145,10 +145,10 @@ public class removeGui extends javax.swing.JFrame {
                    
                    if(response == JOptionPane.YES_OPTION){
                        arrStud.remove(removeStud);
-                       JOptionPane.showMessageDialog(this, "Student removed successfully", "Remove student", JOptionPane.INFORMATION_MESSAGE);
+                       JOptionPane.showMessageDialog(this, "StudentPD removed successfully", "Remove student", JOptionPane.INFORMATION_MESSAGE);
                        
                    } else {
-                       JOptionPane.showMessageDialog(this, "Student not removed in list", "Remove Student", JOptionPane.INFORMATION_MESSAGE);
+                       JOptionPane.showMessageDialog(this, "StudentPD not removed in list", "Remove StudentPD", JOptionPane.INFORMATION_MESSAGE);
                    }
                    
                 }
