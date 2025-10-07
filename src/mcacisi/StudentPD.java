@@ -1,6 +1,8 @@
 
 package mcacisi;
 
+import mcacisi.CustomExceptions.DataStorageException;
+
 import java.io.Serializable;
 
 /**
@@ -84,6 +86,9 @@ public class StudentPD implements Serializable{
 
 
      //INVOKE ALL THE DA METHODS SINCE PD IS THE MIDDLEMAN
+     public static void initialize() throws DataStorageException {
+        StudentDA.initialize();
+     }
 
     
 }
