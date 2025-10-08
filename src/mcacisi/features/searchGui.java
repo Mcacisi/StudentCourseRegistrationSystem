@@ -140,11 +140,7 @@ public class searchGui extends javax.swing.JFrame {
                
     
                 
-        for(StudentPD stud:arrStud){
-            if(stud.getStudentNo().equals(studNo)){
-               found = true;
-            }
-        }
+
         
         
         

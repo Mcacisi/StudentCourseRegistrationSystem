@@ -127,15 +127,7 @@ public class removeGui extends javax.swing.JFrame {
                 
                 
                 
-                for(StudentPD stud : arrStud){
-                   if(stud.getStudentNo().equals(studNo)){
-                      found = true;
-                      removeStud = stud;
-                      
-                    }else{
-                       JOptionPane.showMessageDialog(this, "StudentPD was not found", "Registered students", JOptionPane.INFORMATION_MESSAGE);
-                   }        
-                }
+
                 
                 
                 

@@ -13,9 +13,12 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+import mcacisi.CustomExceptions.DataStorageException;
 import mcacisi.StudentPD;
 import mcacisi.features.removeGui;
 import mcacisi.features.searchGui;
+
+
 
 /**
  * Use the Array list to store student objects for temp, then save them on a file
@@ -24,14 +27,20 @@ import mcacisi.features.searchGui;
  */
 public class StudentApp extends javax.swing.JFrame {
 
-    private ArrayList<StudentPD> arrStud = new ArrayList<>();
+    ArrayList<StudentPD> arrStud2 = StudentPD.getAll();
 
     /**
      * Creates new form StudentApp
      */
     public StudentApp() {
         initComponents();
-        reloadStudentFromFile();
+
+        try {
+            StudentPD.initialize();
+
+        } catch (DataStorageException e) {
+            JOptionPane.showMessageDialog(this,"Database initialization failed, check serve\n" + e.getMessage());
+        }
     }
 
     /**
@@ -239,62 +248,64 @@ public class StudentApp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+
+
+
+
+
+
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         String  lastname, initials, course;
         int studNo,yearOfStudy;
+        lblDisplay.setText("");
 
 
+    try {
         studNo = Integer.parseInt(txtStudentNo.getText().trim());
-                if(studNo<0){
-                    JOptionPane.showMessageDialog(this,"Please enter valid Student NUmber" + studNo);
-                    return;
-                }
-    
-    
-        lastname = txtLastname.getText().toUpperCase().trim();
-                if(lastname.isEmpty()){
-                   JOptionPane.showMessageDialog(this, "Please enter your lastname", "Missing Data input", JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
-                
-                
-                
-                
-        initials = txtInitials.getText().toUpperCase().trim();
-                if(initials.isEmpty()){
-                JOptionPane.showMessageDialog(this, "Please enter your Initials", "Missing Data input", JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
-               
-                
-                
-         yearOfStudy =  Integer.parseInt((String)cmbYearOfStudy.getSelectedItem());
-         
-         
-         
-        course = (String) cmbCourse.getSelectedItem();
-                if(cmbCourse.getSelectedIndex()==0){
-                    JOptionPane.showMessageDialog(this, "Please select the appropriate course", "Course selection", JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
-                 
-                
-
-        
-        for (StudentPD ms : arrStud) {
-            if (ms.getStudentNo().equals(studNo)) {
-                JOptionPane.showMessageDialog(this, "StudentPD Number already exists", "Duplicate students", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
+        if (studNo < 0) {
+            JOptionPane.showMessageDialog(this, "Please enter valid Student NUmber" + studNo);
+            return;
         }
+
+
+        lastname = txtLastname.getText().toUpperCase().trim();
+        if (lastname.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your lastname", "Missing Data input", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+
+        initials = txtInitials.getText().toUpperCase().trim();
+        if (initials.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your Initials", "Missing Data input", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+
+        yearOfStudy = Integer.parseInt((String) cmbYearOfStudy.getSelectedItem());
+
+
+        course = (String) cmbCourse.getSelectedItem();
+        if (cmbCourse.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Please select the appropriate course", "Course selection", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+
+        StudentPD stud = new StudentPD(studNo,lastname,initials,yearOfStudy,course);
+        StudentPD.add(stud);
+        JOptionPane.showMessageDialog(this,"Student Registered successfully");
+
+
+    }catch (DataStorageException e) {
+            JOptionPane.showMessageDialog(this,"Database error:\n" + e.getMessage() );
+            return;
+     }
+    }
         
         
         
-        StudentPD myStud = new StudentPD(studNo, lastname, initials, yearOfStudy, course);
-        arrStud.add(myStud);
-        JOptionPane.showMessageDialog(this, "StudentPD registered successfully", "", JOptionPane.INFORMATION_MESSAGE);
-        
-    }//GEN-LAST:event_btnRegisterActionPerformed
 
     
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -304,34 +315,45 @@ public class StudentApp extends javax.swing.JFrame {
         cmbCourse.setSelectedIndex(0);
         cmbYearOfStudy.setSelectedIndex(0);
         
-    }//GEN-LAST:event_btnClearActionPerformed
+    }
 
     
     
     private void btnViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAllActionPerformed
-
+        lblDisplay.setText("");
         StringBuilder my = new StringBuilder();
         my.append(String.format("%-15s %-15s %-15s %-10s %-20s\n", "STUDENTNO", "SURNAME", "INITIALS", "YEAR", "COURSE"));
         my.append("________________________________________________________________________________________________________________________________\n");
-        
-        for(StudentPD s: arrStud){
-            my.append(String.format("%-15s %-15s %-15s %-10d %-30s\n", 
-                      s.getStudentNo(),
-                      s.getInitials(),
-                       s.getLastname(),
-                       s.getYearOfStudy(),
-                       s.getCourse()));
-            
+
+
+        try{
+            StudentPD.getAll();
+
+        } catch (DataStorageException e) {
+                JOptionPane.showMessageDialog(this,"Retieving Records failed:\n"+ e.getMessage());
+                return;
         }
+
+
+        for(StudentPD st : arrStud2){
+           my.append(String.format("%-15d %-15s %-15s %-10d %-30s\n",
+                                   st.getStudentNo(),
+                                   st.getLastname(),
+                                   st.getInitials(),
+                                   st.getYearOfStudy(),
+                                   st.getCourse()));
+        }
+
         
         lblDisplay.setText(my.toString());
-    }//GEN-LAST:event_btnViewAllActionPerformed
+    }
 
     
-    
+
+
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
 
-       searchGui search = new searchGui(arrStud); 
+       searchGui search = new searchGui(arrStud2);
        search.setVisible(true);
        
     }//GEN-LAST:event_btnSearchActionPerformed
@@ -339,21 +361,18 @@ public class StudentApp extends javax.swing.JFrame {
     
     
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        String updateStud;
+        int updateStud;
         String newLastname, newInitials, newCourse;
         int newYearOfStudy;
-        boolean foundStud = false;
         
         
     try
         {
-        updateStud = txtStudentNo.getText().trim();
-                     if(updateStud.isEmpty() || updateStud.length()< 9){
-                         JOptionPane.showMessageDialog(this, "Please enter student number\n StudentPD number consist of 9 characters", "Missing data input", JOptionPane.INFORMATION_MESSAGE);
+        updateStud = Integer.parseInt(txtStudentNo.getText().trim()) ;
+                     if(updateStud < 0) {
+                         JOptionPane.showMessageDialog(this, "Please enter student number\n Must contain 9 integers");
                          return;
                      }
-                     
-                     Integer.parseInt(updateStud);
                      
         }catch(NumberFormatException e){
                JOptionPane.showMessageDialog(this, "Only integers will be accepted as student number\n Alphabets are not allowed", "StudentNo input Error", JOptionPane.INFORMATION_MESSAGE);
@@ -361,44 +380,25 @@ public class StudentApp extends javax.swing.JFrame {
     }            
                      
                      
-        newLastname = txtLastname.getText();
-        newInitials = txtInitials.getText();
+        newLastname = txtLastname.getText().trim().toUpperCase();
+        newInitials = txtInitials.getText().toUpperCase();
         newYearOfStudy = Integer.parseInt((String) cmbYearOfStudy.getSelectedItem());
         newCourse = (String)cmbCourse.getSelectedItem();
-        
-        
-        
-        for(StudentPD s: arrStud){
-            if(s.getStudentNo().equalsIgnoreCase(updateStud)){
-                foundStud = true;
-                
-                
-               s.setLastname(newLastname.toUpperCase().trim());
-               s.setInitials(newInitials.toUpperCase().trim());
-               s.setYearOfStudy(newYearOfStudy);
-               s.setCourse(newCourse);
-            }
+
+        StudentPD stud = new StudentPD(updateStud,newLastname,newInitials,newYearOfStudy,newCourse);
+
+        try{
+            StudentPD.update(stud);
+        } catch (DataStorageException e) {
+            JOptionPane.showMessageDialog(this,"Update failed:\n" + e.getMessage());
         }
-        
-            
-            if(foundStud){
-               btnViewAllActionPerformed(null);
-             JOptionPane.showMessageDialog(this, "StudentPD record updated successfully");
-             
-             
-            } else if(updateStud.isEmpty()){
-             JOptionPane.showMessageDialog(this, "Please enter student number");   
-             
-             
-            } else{
-                JOptionPane.showMessageDialog(this, "StudentPD was not found in list", "SearchStudent", JOptionPane.INFORMATION_MESSAGE);
-            }
-    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    }
 
    
     
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        removeGui remove = new removeGui(arrStud);
+        removeGui remove = new removeGui(arrStud2);
         remove.setVisible(true);
     }//GEN-LAST:event_btnRemoveActionPerformed
 
@@ -408,62 +408,11 @@ public class StudentApp extends javax.swing.JFrame {
        response = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
        
                  if(response == JOptionPane.YES_OPTION){
-                    saveToFile();
                     this.dispose();
                  }
     }//GEN-LAST:event_btnExitActionPerformed
 
-    
-    
-    //Method to save student objects into a binary file
-    public void saveToFile(){
-    
-       try
-           {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("studentFile.dat"));
-            out.writeObject(arrStud);
-            out.close();
-            JOptionPane.showMessageDialog(this, "StudentPD Added successfully to system", "Registration Successful", JOptionPane.PLAIN_MESSAGE);
-            
-           }catch(IOException e){
-            JOptionPane.showMessageDialog(this, "Failed to add student", "Error saving", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-    }
-    
-    
-    //Method to reload binary file data bact into arraylist to display
-    public void reloadStudentFromFile(){
-        
-        try
-           {
-               File studFile = new File("studentFile.dat");
-               
-               if(studFile.exists()){
-               ObjectInputStream in = new ObjectInputStream(new FileInputStream(studFile));
-               arrStud = (ArrayList <StudentPD>)in.readObject();
-               JOptionPane.showMessageDialog(this, "LOADING.....", "Loading students in system", JOptionPane.PLAIN_MESSAGE);
-               in.close();
-                   
-               }
-               
-           }catch(IOException | ClassNotFoundException e){
-               JOptionPane.showMessageDialog(this, "", "Reloading Error", JOptionPane.ERROR_MESSAGE);
-           }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     /**
      * @param args the command line arguments
