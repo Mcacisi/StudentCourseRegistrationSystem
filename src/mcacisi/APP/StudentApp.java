@@ -27,21 +27,26 @@ import mcacisi.features.searchGui;
  */
 public class StudentApp extends javax.swing.JFrame {
 
-    ArrayList<StudentPD> arrStud2 = StudentPD.getAll();
+    ArrayList<StudentPD> arrStud2 ;
 
     /**
      * Creates new form StudentApp
      */
     public StudentApp() {
-        initComponents();
 
         try {
             StudentPD.initialize();
 
         } catch (DataStorageException e) {
             JOptionPane.showMessageDialog(this,"Database initialization failed, check serve\n" + e.getMessage());
+            return;
         }
+
+        initComponents();
+
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -321,13 +326,15 @@ public class StudentApp extends javax.swing.JFrame {
     
     private void btnViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAllActionPerformed
         lblDisplay.setText("");
+
+
         StringBuilder my = new StringBuilder();
         my.append(String.format("%-15s %-15s %-15s %-10s %-20s\n", "STUDENTNO", "SURNAME", "INITIALS", "YEAR", "COURSE"));
         my.append("________________________________________________________________________________________________________________________________\n");
 
 
         try{
-            StudentPD.getAll();
+            arrStud2 = StudentPD.getAll();
 
         } catch (DataStorageException e) {
                 JOptionPane.showMessageDialog(this,"Retieving Records failed:\n"+ e.getMessage());

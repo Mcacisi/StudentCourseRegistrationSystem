@@ -17,7 +17,7 @@ public class StudentDA {
 
     static void initialize() throws DataStorageException {
          try{
-             Class.forName("com.mysql.cj.Driver");
+             Class.forName("com.mysql.cj.jdbc.Driver");
              conn = DriverManager.getConnection(url,user,password);
 
 
@@ -27,6 +27,7 @@ public class StudentDA {
              ps.executeUpdate();
 
              String useDB = "USE registeredStudent";
+             ps = conn.prepareStatement(useDB);
              ps.execute();
 
              String createTable = "CREATE TABLE IF NOT EXISTS tblStudents("+
@@ -34,7 +35,7 @@ public class StudentDA {
                                   "lastname VARCHAR(100) NOT NULL," +
                                   "initials VARCHAR(100) NOT NULL,"+
                                   "yearOfStudy INT NOT NULL," +
-                                  "course VARCHAR(255) NOT NULL";
+                                  "course VARCHAR(255) NOT NULL)";
 
 
              int row = ps.executeUpdate();
@@ -49,8 +50,12 @@ public class StudentDA {
          }catch (SQLException ex){
              throw new DataStorageException("Connection failed:\n"+ex.getMessage());
 
-         }catch (ClassNotFoundException ex){
+         }catch (DataStorageException ex){
              JOptionPane.showMessageDialog(null,"Loading class failed:\n" + ex.getMessage());
+             return;
+
+         }catch (ClassNotFoundException ex){
+             JOptionPane.showMessageDialog(null,"Driver class not found:\n" + ex.getMessage());
              return;
          }
     }
@@ -165,7 +170,7 @@ public class StudentDA {
         StudentPD student = new StudentPD();
 
         try {
-            String searchQry = "SELECT FROM tblStudents WHERE student_No=? ";
+            String searchQry = "SELECT * FROM tblStudents WHERE student_No=? ";
             PreparedStatement ps = conn.prepareStatement(searchQry);
             ps.setInt(1, student_No);
 
@@ -176,8 +181,8 @@ public class StudentDA {
                 student.setStudentNo(rs.getInt("student_No"));
                 student.setLastname(rs.getString("lastname"));
                 student.setInitials(rs.getString("initials"));
-                student.getYearOfStudy();
-                student.getCourse();
+                student.setYearOfStudy(rs.getInt("yearOfStudy"));
+                student.setCourse(rs.getString("course"));
 
             } else {
                 throw new NotFoundException("Student not found:\n" + student_No + student.getLastname());
