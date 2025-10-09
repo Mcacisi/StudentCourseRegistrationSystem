@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import mcacisi.CustomExceptions.DataStorageException;
+import mcacisi.CustomExceptions.DuplicateException;
 import mcacisi.StudentPD;
 import mcacisi.features.removeGui;
 import mcacisi.features.searchGui;
@@ -270,7 +271,7 @@ public class StudentApp extends javax.swing.JFrame {
     try {
 
 
-         try {
+        try {
                studNo = Integer.parseInt(txtStudentNo.getText().trim());
 
          }catch(NumberFormatException e){
@@ -309,9 +310,14 @@ public class StudentApp extends javax.swing.JFrame {
 
 
     }catch (DataStorageException e) {
-            JOptionPane.showMessageDialog(this,"Database error:\n" + e.getMessage() );
-            return;
-     }
+        JOptionPane.showMessageDialog(this,  e.getMessage(),"Database",JOptionPane.WARNING_MESSAGE);
+        return;
+
+    }catch (DuplicateException e){
+        JOptionPane.showMessageDialog(this, e.getMessage(),"Duplicate Data",JOptionPane.INFORMATION_MESSAGE);
+        return;
+    }
+
     }
         
         
@@ -343,7 +349,7 @@ public class StudentApp extends javax.swing.JFrame {
             arrStud2 = StudentPD.getAll();
 
         } catch (DataStorageException e) {
-                JOptionPane.showMessageDialog(this,"Retieving Records failed:\n"+ e.getMessage());
+                JOptionPane.showMessageDialog(this, e.getMessage(),"Database",JOptionPane.WARNING_MESSAGE);
                 return;
         }
 
@@ -366,7 +372,7 @@ public class StudentApp extends javax.swing.JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
 
-       searchGui search = new searchGui(arrStud2);
+       searchGui search = new searchGui();
        search.setVisible(true);
        
     }//GEN-LAST:event_btnSearchActionPerformed
@@ -416,7 +422,7 @@ public class StudentApp extends javax.swing.JFrame {
         try{
             StudentPD.update(stud);
         } catch (DataStorageException e) {
-            JOptionPane.showMessageDialog(this,"Update failed:\n" + e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage(),"Datbase",JOptionPane.WARNING_MESSAGE);
         }
 
         clear();
@@ -425,7 +431,7 @@ public class StudentApp extends javax.swing.JFrame {
    
     
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        removeGui remove = new removeGui(arrStud2);
+        removeGui remove = new removeGui();
         remove.setVisible(true);
     }//GEN-LAST:event_btnRemoveActionPerformed
 

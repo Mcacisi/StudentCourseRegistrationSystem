@@ -6,6 +6,9 @@ package mcacisi.features;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
+import mcacisi.CustomExceptions.DataStorageException;
+import mcacisi.CustomExceptions.NotFoundException;
 import mcacisi.StudentPD;
 
 /**
@@ -13,12 +16,9 @@ import mcacisi.StudentPD;
  * @author Mcacisi Sithole
  */
 public class searchGui extends javax.swing.JFrame {
-
-    private ArrayList<StudentPD> arrStud = new ArrayList<> ();
     
     
-    public searchGui(ArrayList <StudentPD> arrStud) {
-        this.arrStud = arrStud;
+    public searchGui() {
         initComponents();
     }
 
@@ -117,39 +117,28 @@ public class searchGui extends javax.swing.JFrame {
     
     
     private void btnSearchStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchStudentActionPerformed
-        String studNo;
-        boolean found = false;
-        
-        
-        
-    try
-       {
-        studNo = txtEnterStudentNumber.getText().trim();
-                if(studNo.isEmpty() || studNo.length()< 9){
-                   JOptionPane.showMessageDialog(this, "Please enter student number\n StudentPD number consist of 9 characters", "Missing data inpput", JOptionPane.INFORMATION_MESSAGE);
-                   return;
-                }
-                
-                Integer.parseInt(studNo);
-                
-       }catch(NumberFormatException e){
-             JOptionPane.showMessageDialog(this, "Only integers will be accepted as student number\n Alphabets are not allowed", "StudentNo input Error", JOptionPane.INFORMATION_MESSAGE);
-               return;
-        
-    } 
-               
-    
-                
+     int stud_No = 0;
 
-        
-        
-        
-        if(found){
-            JOptionPane.showMessageDialog(this, "StudentPD found in list","searchStud", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-             JOptionPane.showMessageDialog(this, "StudentPD does not exists ","searchStud", JOptionPane.INFORMATION_MESSAGE);
-        
-        }
+             try{
+                 stud_No = Integer.parseInt(txtEnterStudentNumber.getText().trim());
+
+             }catch (NumberFormatException e){
+                 JOptionPane.showMessageDialog(this,"Student Number must contain only Integer");
+                 return;
+             }
+
+
+
+         try{
+             StudentPD.search(stud_No);
+
+         } catch (DataStorageException e) {
+                 JOptionPane.showMessageDialog(this,e.getMessage(),"Database",JOptionPane.WARNING_MESSAGE);
+
+         }catch (NotFoundException e){
+                 JOptionPane.showMessageDialog(this,e.getMessage(),"Record Not Found",JOptionPane.INFORMATION_MESSAGE);
+                 return;
+         }
         
     }//GEN-LAST:event_btnSearchStudentActionPerformed
 

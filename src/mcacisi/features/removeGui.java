@@ -6,6 +6,9 @@ package mcacisi.features;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
+import mcacisi.CustomExceptions.DataStorageException;
+import mcacisi.CustomExceptions.NotFoundException;
 import mcacisi.StudentPD;
 
 /**
@@ -14,13 +17,13 @@ import mcacisi.StudentPD;
  */
 public class removeGui extends javax.swing.JFrame {
     
-     private ArrayList <StudentPD> arrStud = new ArrayList<> ();
+
      
     /**
      * Creates new form removeGui
      */
-    public removeGui(ArrayList <StudentPD> arrStud) {
-        this.arrStud = arrStud;
+    public removeGui() {
+
         initComponents();
     }
 
@@ -102,48 +105,27 @@ public class removeGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRemoveStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveStudentActionPerformed
-        String studNo;
-        StudentPD removeStud = null;
-        int response;
-        boolean found = false;
-        
-        
-        
-    try
-       {
-        studNo = txtEnterStudentNumber.getText().trim();
-                if(studNo.isEmpty() || studNo.length()< 9){
-                   JOptionPane.showMessageDialog(this, "Please enter student number\n StudentPD number consist of 9 characters", "Missing data input", JOptionPane.INFORMATION_MESSAGE);
-                   return;
-                }
-                
-                Integer.parseInt(studNo);
-                
-       }catch(NumberFormatException e){
-             JOptionPane.showMessageDialog(this, "Only integers will be accepted as student number\n Alphabets are not allowed", "StudentNo input Error", JOptionPane.INFORMATION_MESSAGE);
-               return;
-    }         
-                
-                
-                
-                
+        int stud_No=0;
 
-                
-                
-                
-                if(found){
-                   response = JOptionPane.showConfirmDialog(this, "Do you want to remove student?", "Remove registered student", JOptionPane.YES_NO_OPTION);
-                   
-                   
-                   if(response == JOptionPane.YES_OPTION){
-                       arrStud.remove(removeStud);
-                       JOptionPane.showMessageDialog(this, "StudentPD removed successfully", "Remove student", JOptionPane.INFORMATION_MESSAGE);
-                       
-                   } else {
-                       JOptionPane.showMessageDialog(this, "StudentPD not removed in list", "Remove StudentPD", JOptionPane.INFORMATION_MESSAGE);
-                   }
-                   
-                }
+            try{
+                stud_No = Integer.parseInt(txtEnterStudentNumber.getText().trim());
+
+               } catch (NumberFormatException e) {
+                      JOptionPane.showMessageDialog(this,"Student number must only contain Integers");
+                      return;
+            }
+
+
+        try{
+            StudentPD.delete(stud_No);
+        } catch (DataStorageException e) {
+            JOptionPane.showMessageDialog(this,e.getMessage(),"Database",JOptionPane.WARNING_MESSAGE);
+
+        }catch (NotFoundException e){
+            JOptionPane.showMessageDialog(this,e.getMessage(),"Record does not exist",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
     }//GEN-LAST:event_btnRemoveStudentActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed

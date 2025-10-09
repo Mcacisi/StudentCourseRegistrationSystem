@@ -1,6 +1,7 @@
 package mcacisi;
 
 import mcacisi.CustomExceptions.DataStorageException;
+import mcacisi.CustomExceptions.DuplicateException;
 import mcacisi.CustomExceptions.NotFoundException;
 
 import javax.swing.*;
@@ -66,11 +67,26 @@ public class StudentDA {
 
 
 
-    static void add(StudentPD stud) throws DataStorageException{
+    static void add(StudentPD stud) throws DataStorageException, DuplicateException {
          try{
+
+              String checkDuplicate = "SELECT COUNT(*) FROM tblStudents WHERE student_No = ?";
+
+              PreparedStatement ps = conn.prepareStatement(checkDuplicate);
+              ps.setInt(1,stud.getStudentNo());
+              ResultSet rs = ps.executeQuery();
+
+              rs.next();
+
+              int row = rs.getInt(1);
+                       if(row > 0){
+                           throw new DuplicateException("Student with that student Number already exist");
+                       }
+
+
               String addQry = "INSERT INTO tblStudents(student_No,lastname,initials,yearOfStudy,course) VALUES(?,?,?,?,?)";
 
-              PreparedStatement ps = conn.prepareStatement(addQry);
+              ps = conn.prepareStatement(addQry);
               ps.setInt(1,stud.getStudentNo());
               ps.setString(2,stud.getLastname());
               ps.setString(3,stud.getInitials());
@@ -78,9 +94,9 @@ public class StudentDA {
               ps.setString(5,stud.getCourse());
 
 
-              int row = ps.executeUpdate();
+               row = ps.executeUpdate();
                        if(row == 0){
-                          JOptionPane.showMessageDialog(null,"Tables affected: " + row + "\nCheck database Query");
+                          JOptionPane.showMessageDialog(null,"Tables affected: " + row );
 
                        }else{
                           JOptionPane.showMessageDialog(null,"Tables affected: " + row + "\nTable created successfully");

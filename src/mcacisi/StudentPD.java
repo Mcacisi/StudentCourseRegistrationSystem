@@ -107,4 +107,8 @@ public class StudentPD implements Serializable{
      public static void delete(int student_No) throws DataStorageException,NotFoundException{
         StudentDA.delete(student_No);
      }
+
+    public static StudentPD search(int student_No) throws DataStorageException,NotFoundException {
+        return StudentDA.search(student_No);
+    }
 }
