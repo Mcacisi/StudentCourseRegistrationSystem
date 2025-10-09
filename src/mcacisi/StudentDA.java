@@ -13,7 +13,8 @@ public class StudentDA {
     private static final String user = "root";
     private static final String password = "";
     private static Connection conn;
-    private static ArrayList <StudentPD> arrStud = new ArrayList<>();
+    private static final ArrayList <StudentPD> arrStud = new ArrayList<>();
+
 
 
     static void initialize() throws DataStorageException {
@@ -57,11 +58,9 @@ public class StudentDA {
 
          }catch (DataStorageException ex){
              JOptionPane.showMessageDialog(null,"Loading class failed:\n" + ex.getMessage());
-             return;
 
          }catch (ClassNotFoundException ex){
              JOptionPane.showMessageDialog(null,"Driver class not found:\n" + ex.getMessage());
-             return;
          }
     }
 
