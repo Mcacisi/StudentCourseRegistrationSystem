@@ -30,17 +30,21 @@ public class StudentDA {
              ps = conn.prepareStatement(useDB);
              ps.execute();
 
-             String createTable = "CREATE TABLE IF NOT EXISTS tblStudents("+
-                                  "student_No INT(9) PRIMARY KEY," +
-                                  "lastname VARCHAR(100) NOT NULL," +
-                                  "initials VARCHAR(100) NOT NULL,"+
-                                  "yearOfStudy INT NOT NULL," +
-                                  "course VARCHAR(255) NOT NULL)";
+
+             String createTable = "CREATE TABLE IF NOT EXISTS tblStudents("
+                                + "student_No INT(9) PRIMARY KEY,"
+                                + "lastname VARCHAR(100) NOT NULL,"
+                                + "initials VARCHAR(10) NOT NULL,"
+                                + "yearOfStudy INT NOT NULL,"
+                                + "course VARCHAR(255) NOT NULL"
+                                + ")";
+
+             ps = conn.prepareStatement(createTable);
 
 
              int row = ps.executeUpdate();
                        if(row == 0){
-                           JOptionPane.showMessageDialog(null,"Tables affected: " + row + "\nCheck database Query");
+                           JOptionPane.showMessageDialog(null,"Tables affected: " + row );
 
                        }else{
                            JOptionPane.showMessageDialog(null,"Tables affected: " + row + "\nTable created successfully");

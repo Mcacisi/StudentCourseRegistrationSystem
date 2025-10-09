@@ -262,16 +262,21 @@ public class StudentApp extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         String  lastname, initials, course;
-        int studNo,yearOfStudy;
+        int studNo = 0;
+        int yearOfStudy;
         lblDisplay.setText("");
 
 
     try {
-        studNo = Integer.parseInt(txtStudentNo.getText().trim());
-        if (studNo < 0) {
-            JOptionPane.showMessageDialog(this, "Please enter valid Student NUmber" + studNo);
-            return;
-        }
+
+
+         try {
+               studNo = Integer.parseInt(txtStudentNo.getText().trim());
+
+         }catch(NumberFormatException e){
+             JOptionPane.showMessageDialog(this, "Please enter valid Student Number","Missing Data Input",JOptionPane.INFORMATION_MESSAGE);
+             return;
+         }
 
 
         lastname = txtLastname.getText().toUpperCase().trim();
@@ -319,6 +324,7 @@ public class StudentApp extends javax.swing.JFrame {
         txtInitials.setText("");
         cmbCourse.setSelectedIndex(0);
         cmbYearOfStudy.setSelectedIndex(0);
+        lblDisplay.setText("");
         
     }
 
@@ -371,26 +377,39 @@ public class StudentApp extends javax.swing.JFrame {
         int updateStud;
         String newLastname, newInitials, newCourse;
         int newYearOfStudy;
-        
-        
-    try
-        {
-        updateStud = Integer.parseInt(txtStudentNo.getText().trim()) ;
-                     if(updateStud < 0) {
-                         JOptionPane.showMessageDialog(this, "Please enter student number\n Must contain 9 integers");
+
+
+        try {
+            updateStud = Integer.parseInt(txtStudentNo.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,"Enter integers only");
+            return;
+        }
+
+
+        newLastname = txtLastname.getText().trim().toUpperCase();
+                     if(newLastname.isEmpty()){
+                         JOptionPane.showMessageDialog(this,"Please enter your lastname","Missing Data Input",JOptionPane.INFORMATION_MESSAGE);
                          return;
                      }
-                     
-        }catch(NumberFormatException e){
-               JOptionPane.showMessageDialog(this, "Only integers will be accepted as student number\n Alphabets are not allowed", "StudentNo input Error", JOptionPane.INFORMATION_MESSAGE);
-               return;      
-    }            
-                     
-                     
-        newLastname = txtLastname.getText().trim().toUpperCase();
+
+
         newInitials = txtInitials.getText().toUpperCase();
+                     if(newInitials.isEmpty()){
+                         JOptionPane.showMessageDialog(this,"Please enter your Intials","Missing Data Input",JOptionPane.INFORMATION_MESSAGE);
+                         return;
+                     }
+
+
         newYearOfStudy = Integer.parseInt((String) cmbYearOfStudy.getSelectedItem());
+
+
         newCourse = (String)cmbCourse.getSelectedItem();
+                    if(cmbCourse.getSelectedIndex()==0){
+                        JOptionPane.showMessageDialog(this,"Please select appropriate course","Missing Data Input",JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+
 
         StudentPD stud = new StudentPD(updateStud,newLastname,newInitials,newYearOfStudy,newCourse);
 
@@ -400,6 +419,7 @@ public class StudentApp extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Update failed:\n" + e.getMessage());
         }
 
+        clear();
     }
 
    
@@ -418,6 +438,15 @@ public class StudentApp extends javax.swing.JFrame {
                     this.dispose();
                  }
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void clear(){
+        txtStudentNo.setText("");
+        txtLastname.setText("");
+        txtInitials.setText("");
+        cmbCourse.setSelectedIndex(0);
+        cmbYearOfStudy.setSelectedIndex(0);
+        lblDisplay.setText("");
+    }
 
 
     
