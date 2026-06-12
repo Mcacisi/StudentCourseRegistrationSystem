@@ -1,15 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package mcacisi.features;
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import mcacisi.CustomExceptions.DataStorageException;
 import mcacisi.CustomExceptions.NotFoundException;
-import mcacisi.StudentPD;
+import mcacisi.Backend.serviceLayer;
 
 /**
  *
@@ -117,7 +113,7 @@ public class removeGui extends javax.swing.JFrame {
 
 
         try{
-            StudentPD.delete(stud_No);
+            serviceLayer.delete(stud_No);
         } catch (DataStorageException e) {
             JOptionPane.showMessageDialog(this,e.getMessage(),"Database",JOptionPane.WARNING_MESSAGE);
 

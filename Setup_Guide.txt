@@ -1,0 +1,20 @@
+
+THIS IS A BASIC JAVA APPLICATION WHICH CONNECTS TO XAMPP SERVER TO FULLY OPERATE
+
+
+1.DOWNLOAD JAVA v1.8.0_251 & MYSQL
+2.DOWNLOAD JAVA JDK & NETBEANS APACHE 19
+3.DOWNLOAD XAMPP SERVER
+
+
+XAMPP SERVER DB CREDENTIALS:
+-if you already have xampp and use your own password & username other than default settings,
+ Navigate to the studentDA.java class and change the hardcoded credentials to match yours.
+
+
+4.START XAMPP SERVER (APACHE & MYSQL),SHOULD DISPLAY GREEN LIGHT IF RUNNING
+5.RUN APPLICATION
+
+
+FOR MORE INFO:
+mcacisisithole@gmail.com | 0646101215

@@ -1,4 +1,4 @@
-package mcacisi;
+package mcacisi.Backend;
 
 import mcacisi.CustomExceptions.DataStorageException;
 import mcacisi.CustomExceptions.DuplicateException;

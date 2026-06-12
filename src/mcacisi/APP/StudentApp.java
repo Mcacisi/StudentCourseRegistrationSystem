@@ -1,15 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package mcacisi.APP;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import mcacisi.Backend.StudentPD;
 
 import mcacisi.CustomExceptions.DataStorageException;
 import mcacisi.CustomExceptions.DuplicateException;
-import mcacisi.StudentPD;
+import mcacisi.Backend.serviceLayer;
 import mcacisi.features.removeGui;
 import mcacisi.features.searchGui;
 
@@ -30,7 +28,7 @@ public class StudentApp extends javax.swing.JFrame {
     public StudentApp() {
 
         try {
-            StudentPD.initialize();
+            serviceLayer.initialize();
 
         } catch (DataStorageException e) {
             JOptionPane.showMessageDialog(this,"Database initialization failed, check serve\n" + e.getMessage());
@@ -255,7 +253,7 @@ public class StudentApp extends javax.swing.JFrame {
 
 
 
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {                                            
         String  lastname, initials, course;
         int studNo = 0;
         int yearOfStudy;
@@ -299,7 +297,7 @@ public class StudentApp extends javax.swing.JFrame {
 
 
         StudentPD stud = new StudentPD(studNo,lastname,initials,yearOfStudy,course);
-        StudentPD.add(stud);
+        serviceLayer.add(stud);
         JOptionPane.showMessageDialog(this,"Student Registered successfully");
 
 
@@ -318,7 +316,7 @@ public class StudentApp extends javax.swing.JFrame {
         
 
     
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {                                         
         txtStudentNo.setText("");
         txtLastname.setText("");
         txtInitials.setText("");
@@ -330,7 +328,7 @@ public class StudentApp extends javax.swing.JFrame {
 
     
     
-    private void btnViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAllActionPerformed
+    private void btnViewAllActionPerformed(java.awt.event.ActionEvent evt) {                                           
         lblDisplay.setText("");
 
 
@@ -340,7 +338,7 @@ public class StudentApp extends javax.swing.JFrame {
 
 
         try{
-            arrStud2 = StudentPD.getAll();
+            arrStud2 = serviceLayer.getAll();
 
         } catch (DataStorageException e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(),"Database",JOptionPane.WARNING_MESSAGE);
@@ -373,7 +371,7 @@ public class StudentApp extends javax.swing.JFrame {
 
     
     
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {                                          
         int updateStud;
         String newLastname, newInitials, newCourse;
         int newYearOfStudy;
@@ -414,7 +412,7 @@ public class StudentApp extends javax.swing.JFrame {
         StudentPD stud = new StudentPD(updateStud,newLastname,newInitials,newYearOfStudy,newCourse);
 
         try{
-            StudentPD.update(stud);
+            serviceLayer.update(stud);
         } catch (DataStorageException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(),"Datbase",JOptionPane.WARNING_MESSAGE);
         }

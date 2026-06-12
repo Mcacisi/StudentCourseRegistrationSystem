@@ -23,7 +23,7 @@ THE PROBLEMS THAT THE PROGRAM SOLVES
 
 FUTURE FEATURES
 -JDBC API
--XAMP as a server (APACHE & SQL)
+-XAMPP as a server (APACHE & SQL)
 -PDDA Classes (3-Tier Architecture Program)
 
 
