@@ -8,8 +8,8 @@ import mcacisi.Backend.StudentPD;
 import mcacisi.CustomExceptions.DataStorageException;
 import mcacisi.CustomExceptions.DuplicateException;
 import mcacisi.Backend.serviceLayer;
-import mcacisi.features.removeGui;
-import mcacisi.features.searchGui;
+import mcacisi.Features.removeGui;
+import mcacisi.Features.searchGui;
 
 
 
@@ -28,10 +28,11 @@ public class StudentApp extends javax.swing.JFrame {
     public StudentApp() {
 
         try {
-            serviceLayer.initialize();
+            serviceLayer.initializeConnection();
+            serviceLayer.createDatabaseTable();
 
         } catch (DataStorageException e) {
-            JOptionPane.showMessageDialog(this,"Database initialization failed, check serve\n" + e.getMessage());
+            JOptionPane.showMessageDialog(this,"Database initialization failed, check serve\n\n" + e.getMessage());
             return;
         }
 

@@ -1,5 +1,5 @@
 
-package mcacisi.features;
+package mcacisi.Features;
 
 import javax.swing.JOptionPane;
 
@@ -133,7 +133,7 @@ public class searchGui extends javax.swing.JFrame {
 
          }catch (NotFoundException e){
                  JOptionPane.showMessageDialog(this,e.getMessage(),"Record Not Found",JOptionPane.INFORMATION_MESSAGE);
-                 return;
+
          }
         
     }//GEN-LAST:event_btnSearchStudentActionPerformed

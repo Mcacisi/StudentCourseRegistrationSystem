@@ -1,5 +1,5 @@
 
-package mcacisi.features;
+package mcacisi.Features;
 
 import javax.swing.JOptionPane;
 

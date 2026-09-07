@@ -12,9 +12,13 @@ import mcacisi.CustomExceptions.NotFoundException;
 public class serviceLayer {
     
          //INVOKE ALL THE DA METHODS SINCE PD IS THE MIDDLEMAN
-     public static void initialize() throws DataStorageException {
-        StudentDA.initialize();
+     public static void initializeConnection() throws DataStorageException {
+        StudentDA.initializeConnection();
      }
+
+       public static void createDatabaseTable() throws DataStorageException {
+         StudentDA.createDatabaseTable();
+       }
 
      public static void add(StudentPD stud) throws DataStorageException{
         StudentDA.add(stud);
@@ -32,7 +36,7 @@ public class serviceLayer {
         StudentDA.delete(student_No);
      }
 
-    public static StudentPD search(int student_No) throws DataStorageException,NotFoundException {
-        return StudentDA.search(student_No);
+    public static void search(int student_No) throws DataStorageException,NotFoundException {
+        StudentDA.search(student_No);
     }
 }

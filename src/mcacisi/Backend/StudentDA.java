@@ -17,8 +17,9 @@ public class StudentDA {
 
 
 
-    static void initialize() throws DataStorageException {
+    static void initializeConnection() throws DataStorageException {
          try{
+
              Class.forName("com.mysql.cj.jdbc.Driver");
              conn = DriverManager.getConnection(url,user,password);
 
@@ -28,12 +29,29 @@ public class StudentDA {
              PreparedStatement ps = conn.prepareStatement(createDB);
              ps.executeUpdate();
 
+
              String useDB = "USE registeredStudent";
              ps = conn.prepareStatement(useDB);
              ps.execute();
+            
 
 
-             String createTable = "CREATE TABLE IF NOT EXISTS tblStudents("
+         }catch (SQLException ex){
+             throw new DataStorageException("Connection failed:\n\n"+ex.getMessage());
+
+         }catch (ClassNotFoundException ex){
+             throw new DataStorageException("Driver not found:\n\n"+ex.getMessage());
+         }
+    }
+
+
+
+
+
+    static void createDatabaseTable() throws DataStorageException {
+        try{
+
+            String createTable = "CREATE TABLE IF NOT EXISTS tblStudents("
                                 + "student_No INT(9) PRIMARY KEY,"
                                 + "lastname VARCHAR(100) NOT NULL,"
                                 + "initials VARCHAR(10) NOT NULL,"
@@ -41,27 +59,19 @@ public class StudentDA {
                                 + "course VARCHAR(255) NOT NULL"
                                 + ")";
 
-             ps = conn.prepareStatement(createTable);
 
+            PreparedStatement ps = conn.prepareStatement(createTable);
+            
+            int row = ps.executeUpdate();
 
-             int row = ps.executeUpdate();
-                       if(row == 0){
-                           JOptionPane.showMessageDialog(null,"Tables affected: " + row );
+            if(row > 0){
+                throw new DataStorageException("INITIALIZING DATABASE");
+            }
 
-                       }else{
-                           JOptionPane.showMessageDialog(null,"Tables affected: " + row + "\nTable created successfully");
-                       }
+        }catch (SQLException ex){
+            throw new DataStorageException("Connection failed:\n\n"+ex.getMessage());
 
-
-         }catch (SQLException ex){
-             throw new DataStorageException("Connection failed:\n"+ex.getMessage());
-
-         }catch (DataStorageException ex){
-             JOptionPane.showMessageDialog(null,"Loading class failed:\n" + ex.getMessage());
-
-         }catch (ClassNotFoundException ex){
-             JOptionPane.showMessageDialog(null,"Driver class not found:\n" + ex.getMessage());
-         }
+        }
     }
 
 
