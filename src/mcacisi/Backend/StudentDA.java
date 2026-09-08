@@ -61,12 +61,9 @@ public class StudentDA {
 
 
             PreparedStatement ps = conn.prepareStatement(createTable);
-            
-            int row = ps.executeUpdate();
+            ps.executeUpdate();
 
-            if(row > 0){
-                throw new DataStorageException("INITIALIZING DATABASE");
-            }
+        
 
         }catch (SQLException ex){
             throw new DataStorageException("Connection failed:\n\n"+ex.getMessage());
@@ -194,34 +191,32 @@ public class StudentDA {
 
 
 
-
-    static StudentPD search(int student_No) throws DataStorageException,NotFoundException {
+    static void search(int student_No) throws DataStorageException,NotFoundException {
         StudentPD student = new StudentPD();
 
         try {
-            String searchQry = "SELECT * FROM tblStudents WHERE student_No=? ";
+
+            String searchQry = "SELECT COUNT(*) FROM tblStudents WHERE student_No=? ";
             PreparedStatement ps = conn.prepareStatement(searchQry);
             ps.setInt(1, student_No);
 
             ResultSet rs = ps.executeQuery();
+            rs.next();
 
-            if (rs.next()) {
+            int row = rs.getInt(1);
 
-                student.setStudentNo(rs.getInt("student_No"));
-                student.setLastname(rs.getString("lastname"));
-                student.setInitials(rs.getString("initials"));
-                student.setYearOfStudy(rs.getInt("yearOfStudy"));
-                student.setCourse(rs.getString("course"));
+            if (row > 0) {
+
+                throw new NotFoundException("Student found:\n\n" + student_No + student.getLastname());
 
             } else {
-                throw new NotFoundException("Student not found:\n" + student_No + student.getLastname());
+                throw new NotFoundException("Student not found:\n\n" + student_No + student.getLastname());
             }
 
 
         } catch (SQLException ex) {
-            throw new RuntimeException("Searching failed:\n" + ex);
+            throw new DataStorageException("Searching failed:\n" + ex);
         }
-        return student;
     }
 }
 
