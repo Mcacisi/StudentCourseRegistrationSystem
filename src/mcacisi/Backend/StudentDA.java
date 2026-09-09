@@ -9,10 +9,13 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class StudentDA {
-    private static final String url = "jdbc:mysql://localhost:3306/";
-    private static final String user = "root";
-    private static final String password = "";
+    private static final String url = ConfigManager.getDbUrl();
+    private static final String user = ConfigManager.getDbUsername();
+    private static final String password = ConfigManager.getDbPassword();
+    private static final String driver = ConfigManager.getDbDriver();
     private static Connection conn;
+
+
     private static final ArrayList <StudentPD> arrStud = new ArrayList<>();
 
 
@@ -20,7 +23,7 @@ public class StudentDA {
     static void initializeConnection() throws DataStorageException {
          try{
 
-             Class.forName("com.mysql.cj.jdbc.Driver");
+             Class.forName(driver);
              conn = DriverManager.getConnection(url,user,password);
 
 
@@ -43,8 +46,6 @@ public class StudentDA {
              throw new DataStorageException("Driver not found:\n\n"+ex.getMessage());
          }
     }
-
-
 
 
 
